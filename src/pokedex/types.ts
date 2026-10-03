@@ -1,13 +1,10 @@
-const STAT_FIELDS = [
-    "hp",
-    "attack",
-    "defense",
-    "special-attack",
-    "special-defense",
-    "speed",
-  ] as const;
-  
-type StatField = (typeof STAT_FIELDS)[number];
+type StatField =
+  | "hp"
+  | "attack"
+  | "defense"
+  | "special-attack"
+  | "special-defense"
+  | "speed";
   
 type Stats = Record<StatField, number>;
 
