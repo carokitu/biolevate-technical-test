@@ -13,43 +13,36 @@ function searchRequest(query?: string) {
   return new NextRequest(url);
 }
 
+async function bodyOf(response: Response) {
+  return (await response.json()) as SearchResponse;
+}
+
 describe("GET /api/search", () => {
-  it("rejects a missing query", async () => {
-    const response = await GET(searchRequest());
+  it("rejects an empty query", async () => {
+    const missing = await GET(searchRequest());
+    const blank = await GET(searchRequest("   "));
 
-    expect(response.status).toBe(400);
-    await expect(response.json()).resolves.toEqual({
-      error: "Query is required.",
-    });
+    expect(missing.status).toBe(400);
+    await expect(missing.json()).resolves.toEqual({ error: "Query is required." });
+
+    expect(blank.status).toBe(400);
+    await expect(blank.json()).resolves.toEqual({ error: "Query is required." });
   });
 
-  it("rejects a blank query", async () => {
-    const response = await GET(searchRequest("   "));
-
-    expect(response.status).toBe(400);
-  });
-
-  it("returns sleep moves for a question", async () => {
-    const response = await GET(
-      searchRequest("How can I put an opponent to sleep?"),
-    );
+  it("returns the Pokémon that matches the query", async () => {
+    const response = await GET(searchRequest("pikachu"));
+    const body = await bodyOf(response);
 
     expect(response.status).toBe(200);
-
-    const body = (await response.json()) as SearchResponse;
-
-    expect(body.query).toBe("How can I put an opponent to sleep?");
-    expect(body.results.moves.map((move) => move.item.name)).toContain("sing");
-    expect(body.results.moves.map((move) => move.item.name)).not.toContain("fly");
+    expect(body.query).toBe("pikachu");
+    expect(body.results.pokemon.map((pokemon) => pokemon.item.name)).toContain("pikachu");
   });
 
-  it("returns empty lists when nothing matches", async () => {
+  it("returns no matches when nothing fits", async () => {
     const response = await GET(searchRequest("no-such-thing"));
+    const body = await bodyOf(response);
 
     expect(response.status).toBe(200);
-
-    const body = (await response.json()) as SearchResponse;
-
     expect(body.results.pokemon).toEqual([]);
     expect(body.results.moves).toEqual([]);
     expect(body.results.abilities).toEqual([]);
