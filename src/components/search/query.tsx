@@ -17,7 +17,7 @@ function sortGoesBesidePokemon(results: SearchResults) {
   );
 }
 
-export function QueryResults({
+export function Query({
   query,
   catalog,
   sort,

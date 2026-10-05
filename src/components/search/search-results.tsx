@@ -4,8 +4,8 @@ import { type PokemonCardData, AbilityCard, CardGrid, MoveCard, pokemonCards } f
 import { extractSearchTerms } from "@/search/query";
 import type { SearchResults } from "@/search/search";
 import type { PokemonSort } from "@/search/sort";
-import { ResultList, Section } from "./section";
-import { SortControl } from "./sort-control";
+import { ResultList, Section } from "./shared";
+import { SortControl } from "./shared";
 import { orderCards } from "./utils";
 
 export function SearchResultsView({

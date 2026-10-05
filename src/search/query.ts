@@ -19,12 +19,16 @@ const STOP_WORDS = new Set([
   "which",
   "is",
   "with",
-  // These do not say what to find. "put" and "target" show up in most effect texts.
+  // These do not say what to find. They show up in most effect texts.
   "put",
   "pokemon",
   "pokemons",
   "target",
   "targets",
+  "opponent",
+  "opponents",
+  "user",
+  "users",
 ]);
 
 /**

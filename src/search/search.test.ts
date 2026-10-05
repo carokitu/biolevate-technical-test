@@ -37,6 +37,7 @@ describe("search", () => {
     });
 
     expect(results.moves.map((move) => move.item.name)).not.toContain("fly");
+    expect(results.abilities.map((ability) => ability.item.name)).not.toContain("intimidate");
   });
 
   it("finds rain abilities and the Pokémon that have them in one search", () => {

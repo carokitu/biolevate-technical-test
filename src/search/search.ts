@@ -156,18 +156,6 @@ function abilityFields(ability: Ability): Field[] {
   ];
 }
 
-export function searchPokemon(pokedex: Pokedex, query: string): Pokemon[] {
-  return searchHits(pokedex.pokemon, query, pokemonFields).map((hit) => hit.item);
-}
-
-export function searchMoves(pokedex: Pokedex, query: string): Move[] {
-  return searchHits(pokedex.moves, query, moveFields).map((hit) => hit.item);
-}
-
-export function searchAbilities(pokedex: Pokedex, query: string): Ability[] {
-  return searchHits(pokedex.abilities, query, abilityFields).map((hit) => hit.item);
-}
-
 export type SearchSection = "pokemon" | "moves" | "abilities";
 
 const SECTION_RANK: Record<SearchSection, number> = {

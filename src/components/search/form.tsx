@@ -1,6 +1,6 @@
 "use client";
 
-export function SearchForm({
+export function Form({
   value,
   onChange,
   onSubmit,

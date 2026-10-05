@@ -125,5 +125,11 @@ export const pokedex: Pokedex = {
       short_effect: "Doubles Speed during rain.",
       pokemon: ["goldeen"],
     }),
+    ability({
+      id: 22,
+      name: "intimidate",
+      short_effect: "Lowers opponents' Attack one stage upon entering battle.",
+      pokemon: ["ekans"],
+    }),
   ],
 };

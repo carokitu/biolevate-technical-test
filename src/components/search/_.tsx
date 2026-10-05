@@ -6,10 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import type { PokemonSort } from "@/search/sort";
 
 import { CardGrid, type PokemonCardData } from "../cards";
-import { QueryResults } from "./query-results";
-import { SearchForm } from "./search-form";
-import { Section } from "./section";
-import { SortControl } from "./sort-control";
+import { Query } from "./query";
+import { Form } from "./form";
+import { Section, SortControl } from "./shared";
 import { orderCards } from "./utils";
 
 const SEARCH_DELAY_MS = 300;
@@ -50,7 +49,7 @@ export function Search({ catalog }: { catalog: PokemonCardData[] }) {
   return (
     <div className="flex flex-col gap-page">
       <div className="flex flex-col items-center gap-section">
-        <SearchForm
+        <Form
           value={draft}
           onChange={change}
           onSubmit={() => {
@@ -62,7 +61,7 @@ export function Search({ catalog }: { catalog: PokemonCardData[] }) {
       </div>
       <div aria-live="polite">
         {query ? (
-          <QueryResults
+          <Query
             key={query}
             query={query}
             catalog={catalogByName}

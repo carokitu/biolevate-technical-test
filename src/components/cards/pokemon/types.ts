@@ -14,4 +14,9 @@ export type PokemonCardData = {
 export type PokemonCardHighlight = {
     kind: "id" | "name" | "type" | "genus";
     text: string;
-  };
+};
+
+export type GridCard = {
+    pokemon: PokemonCardData;
+    highlight?: PokemonCardHighlight;
+};
