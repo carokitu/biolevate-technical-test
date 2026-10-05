@@ -55,7 +55,7 @@ The suite does not check the shape from `getPokedex`, the sort, or the utils tha
 
 The whole file is scored on every query. That is enough for 151 Pokémon. Beyond that I would cap the cards, then add an index only once the scan is slow. A question such as "faster than Pikachu" is not a bag of words. I would not parse it. Names and effects stay in the box. Type and speed stay in the controls.
 
-A prefix also matches a genus, so Snorlax appears for "sleep".
+A prefix also matches a genus, so Snorlax appears for "sleep". Letters from the middle of a word do not: `leep` does not find `sleep`. It keeps the start of a name, as in `bulba`. Inner letters such as `ing` would match dozens of unrelated words.
 
 ## Time
 
